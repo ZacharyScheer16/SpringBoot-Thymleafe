@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Iteration in Thymeleaf</title>
+    <style>
+        /* Styles for the entire page background */
+        body {
+            background-color: #FFF3E0; /* A warm, light orange/peach color */
+            font-family: Arial, sans-serif; /* A common, readable font */
+            display: flex; /* Use flexbox to easily center the table */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            margin: 0; /* Remove default body margin */
+            padding: 20px; /* Add some padding around the content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        /* Styles for the table */
+        table {
+            width: 80%; /* Make the table wider (80% of its container) */
+            max-width: 900px; /* Prevent table from getting too wide on large screens */
+            border-collapse: collapse; /* Collapse borders for a cleaner look */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            background-color: #FFFFFF; /* White background for the table itself */
+        }
+
+        /* Styles for table headers */
+        th {
+            background-color: #FFCC80; /* A slightly darker warm color for headers */
+            color: #4A2300; /* Dark text for contrast */
+            padding: 12px 15px; /* Add padding */
+            text-align: left; /* Align text to the left */
+            font-size: 1.1em; /* Make header text a bit bigger */
+        }
+
+        /* Styles for table cells */
+        td {
+            padding: 10px 15px; /* Add padding */
+            border-bottom: 1px solid #EEEEEE; /* Light border between rows */
+        }
+
+        /* Style for the last row */
+        tr:last-child td {
+            border-bottom: none; /* No border for the last row */
+        }
+
+        /* Alternating row colors for better readability */
+        tbody tr:nth-child(even) {
+            background-color: #FFF8E1; /* Lighter shade for even rows */
+        }
+
+        tbody tr:hover {
+            background-color: #FFE0B2; /* Highlight row on hover */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Serial #</th>
+        <th>Index</th>
+        <th>Even</th>
+        <th>Odd</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Gender</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${userStat.count}"></td> <!---count variable-->
+        <td th:text="${userStat.index}"></td>
+        <td th:text="${userStat.even}"></td>
+        <td th:text="${userStat.odd}"></td>
+        <td th:text="${userStat.first}"></td>
+        <td th:text="${userStat.last}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.role}"></td>
+        <td th:text="${user.gender}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
