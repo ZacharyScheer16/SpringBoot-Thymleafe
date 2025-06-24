@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>User Registered Data</title>
+
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px; /* Consistent with your form width */
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .user-details {
+            text-align: left; /* Align text within details to the left */
+            margin-bottom: 20px;
+        }
+
+        .user-details p {
+            background-color: #f9f9f9;
+            border-left: 5px solid #007bff;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            color: #333;
+            font-size: 1.05em;
+            display: flex; /* Use flexbox for label-value alignment */
+            align-items: baseline; /* Align text baselines */
+            gap: 10px; /* Space between label and strong tag */
+        }
+
+        .user-details p strong {
+            color: #000;
+            font-weight: 600; /* Slightly bolder than default strong */
+            word-break: break-word; /* Prevent long words from overflowing */
+        }
+
+        /* Specific styling for the 'Password' field for privacy */
+        .user-details p.password-field strong {
+            /* You might choose to hide it completely or just indicate it's a password */
+            /* For display purposes, it's often not shown, or just a placeholder */
+            color: #888; /* Dim the text */
+            font-style: italic; /* Make it italic */
+            /* text-decoration: line-through; */ /* Option to strike through */
+            /* content: '********'; */ /* Not directly applicable to existing content */
+            /* This is a backend decision, but if it's sent to the front, best not to display */
+        }
+
+        /* Basic button styling if you wanted to add a "Go back" button etc. */
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none; /* For anchor tags */
+            display: inline-block; /* For anchor tags to apply padding */
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+<div align="center">
+
+    <h1>Registered User Information</h1>
+
+    <div>
+        <p>Name: <strong th:text="${userForm.name}"></strong></p>
+        <p>Email: <strong th:text="${userForm.email}"></strong></p>
+        <p>Password: <strong th:text="${userForm.password}"></strong></p>
+        <p>Gender: <strong th:text="${userForm.gender}"></strong></p>
+        <p>Address: <strong th:text="${userForm.address}"></strong></p>
+        <p>Married: <strong th:text="${userForm.marries}"></strong></p>
+        <p>Profession: <strong th:text="${userForm.proffesion}"></strong></p>
+    </div>
+
+</div>
+
+</body>
+</html>

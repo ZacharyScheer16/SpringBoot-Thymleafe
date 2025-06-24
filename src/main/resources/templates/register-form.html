@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>User Register Form</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between form elements */
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        /* Style for inputs, selects, and textareas */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: calc(100% - 20px); /* Account for padding */
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 80px;
+        }
+
+        /* --- Radio Button Specific Styles --- */
+        .gender-group {
+            display: flex; /* Make the gender options lay out in a row */
+            align-items: center; /* Vertically align items */
+            gap: 15px; /* Space between the "Gender:" label and the first radio, and between radio options */
+            margin-top: 5px; /* Adjust top margin as needed */
+            margin-bottom: 15px; /* Space below the entire gender row */
+            text-align: left; /* Ensure the whole group starts at the left */
+        }
+
+        .gender-group label {
+            display: inline; /* Keep the 'Gender:' label inline */
+            margin-bottom: 0; /* Remove bottom margin from the main label in this context */
+            margin-right: 0; /* Adjust as needed */
+            font-weight: bold;
+            color: #555;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 10px; /* Space between 'Male' and 'Female' text labels */
+            align-items: center; /* Align the input and text */
+        }
+
+        .gender-option {
+            display: flex;
+            align-items: center; /* Align the input and text within each option */
+        }
+
+        .gender-option input[type="radio"] {
+            margin-right: 5px; /* Space between radio button and its text */
+            margin-top: 0; /* Remove extra top margin */
+        }
+        /* --- End Radio Button Specific Styles --- */
+
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>User Registration</h1>
+    <form
+            role="form"
+            method="post"
+            th:action="@{/register/save}"
+            th:object="${userForm}"
+    >
+        <label for="fullName">Full Name: </label>
+        <input type="text" id="fullName" th:field="*{name}" />
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" th:field="*{email}" />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" />
+        <div class="gender-group">
+            <label>Gender: </label>
+            <div class="gender-options">
+                <div class="gender-option">
+                    <input type="radio" id="genderMale" th:field="*{gender}" value="Male" />
+                    <label for="genderMale">Male</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" id="genderFemale" th:field="*{gender}" value="Female" />
+                    <label for="genderFemale">Female</label>
+                </div>
+            </div>
+        </div>
+        <label for="profession">Profession:</label>
+        <select id="profession" th:field="*{proffesion}">
+            <option
+                    th:each="p : ${professionList}"
+                    th:value="${p}"
+                    th:text="${p}"
+            ></option>
+        </select>
+
+        <label for="address">Address:</label>
+        <textarea rows="5" cols="25" id="address" th:field="*{address}"></textarea>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>
